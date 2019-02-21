@@ -1,0 +1,5 @@
+sum-up-numbers-simple([], 0).
+sum-up-numbers-simple([L | Tail], N) :- 
+number(L),
+sum-up-numbers-simple(Tail, SumRest),
+N is L + SumRest.

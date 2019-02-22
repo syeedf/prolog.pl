@@ -36,6 +36,8 @@ min-func([Head |Tail],Smallest_value) :-
     min-func(Tail,Tail_small_value),
     Head>= Tail_small_value,
     Smallesst_value is Head.
+    min-func([_|Tail],Smallest_value) :- %continues to check rest of the lst for smallest value
+    min-func(Tail,Smallest_value).
     
     
 min-above-min([],_,_,) :- false. % fact that empty list in the first list returns false.
@@ -43,9 +45,6 @@ min-above-min(X,[],X).
 min-above-min(lst1,lst2,N) :-
     lst2 \==[],
     min-func(),
-
-
-
 
 
 common-unique-elements([], _, []). %if list is empty return true

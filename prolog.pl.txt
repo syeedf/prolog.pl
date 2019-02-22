@@ -1,6 +1,9 @@
 %commands to the interpreter are submitted from stdin input ('show input' box below)
 %'halt.' will be automatically appended to stdin input.
 %swi-prolog 7.2.3
+%commands to the interpreter are submitted from stdin input ('show input' box below)
+%'halt.' will be automatically appended to stdin input.
+%swi-prolog 7.2.3
 sum-up-numbers-simple([], 0).
 sum-up-numbers-simple([Head | Tail], Total) :- 
     number(Head),
@@ -26,12 +29,17 @@ sum-up-numbers-general([Head | Tail], SumRest):-
     not(number(Head)), %checks if its not a number
     sum-up-numbers-general(Tail, SumRest).
 %//////////
-
-
+min-func([Head |Tail],Smallest_value) :-
+    number(Head),
+    min-func(Tail,Tail_small_value),
+    Head< Tail_small_value,
+    Smallesst_value is Head.
+    
+    
 min-above-min([],_,_,) :- false. % fact that empty list in the first list returns false.
 min-above-min(X,[],X).
 min-above-min(lst1,lst2,N) :-
-    lst \==[],
+    lst2 \==[],
     min-func(),
 
 

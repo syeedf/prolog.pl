@@ -41,12 +41,14 @@ min-func([Head |Tail],Smallest_value) :-
     
     
 min-above-min([],_,_,) :- false. % fact that empty list in the first list returns false.
-min-above-min(X,[],X).
 min-above-min(lst1,lst2,N) :-
+    lst2 ==[],
+    member(N,lst1).
+min-above-min(lst1,lst2,N) :-    
     lst2 \==[],
-    min-func(),
-
-
+    min-func(lst2,lst_min),
+    N >lst_min.
+%//////////////////////////
 common-unique-elements([], _, []). %if list is empty return true
 common-unique-elements([Head |Tail], L2, [Head | Tail2]) :-
     member(Head,L2),

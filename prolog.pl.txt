@@ -1,10 +1,11 @@
-
+%commands to the interpreter are submitted from stdin input ('show input' box below)
+%'halt.' will be automatically appended to stdin input.
+%swi-prolog 7.2.3
 sum-up-numbers-simple([], 0).
 sum-up-numbers-simple([Head | Tail], Total) :- 
     number(Head),
     sum-up-numbers-simple(Tail, SumRest),
     Total is Head + SumRest.
- 
 sum-up-numbers-simple([Head | Tail], SumRest) :- 
     not(number(Head)),
     sum-up-numbers-simple(Tail, SumRest).
@@ -26,8 +27,24 @@ sum-up-numbers-general([Head | Tail], SumRest):-
     sum-up-numbers-general(Tail, SumRest).
 %//////////
 
-common-unique-elements([], _, []). %fact for empty lists
-common-unique-elements([Head |Tail], L2, [Head2 | Tail2]) :-
-    member(Head,L2), %member func that checks for like memebers
-    common-unique-elements(Tail,L2, Tail2). %recursive call
+
+min-above-min([],_,_,) :- false. % fact that empty list in the first list returns false.
+min-above-min(X,[],X).
+min-above-min(lst1,lst2,N) :-
+    lst \==[],
+    min-func(),
+
+
+
+
+
+common-unique-elements([], _, []). %if list is empty return true
+common-unique-elements([Head |Tail], L2, [Head | Tail2]) :-
+    member(Head,L2),
+    common-unique-elements(Tail,L2, Tail2).
 common-unique-elements([_| Tail], L2, Tail2) :-
+    common-unique-elements(Tail, L2, Tail2).
+common-unique-elements([Head |Tail], L2, [Head | Tail2]) :-
+    is_list(Head),
+    common-unique-elements(Head,L2,[Head|Tail2]),
+    common-unique-elements(Tail,L2, [Head|Tail2]).

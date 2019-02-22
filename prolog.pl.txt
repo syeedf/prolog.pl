@@ -7,3 +7,15 @@ sum-up-numbers-simple([Head | Tail], Total) :-
 sum-up-numbers-simple([Head | Tail], SumRest) :- 
     not(number(Head)),
     sum-up-numbers-simple(Tail, SumRest).
+
+sum-up-numbers-general([], 0).
+sum-up-numbers-general([Head | Tail], Total):-
+    number(Head),
+    sum-up-numbers-general(Tail, SumRest),
+    Total is Head + SumRest.
+sum-up-numbers-general([Head | Tail], Total):-
+    is_list(Head),
+    sum-up-numbers-general(Head, SumRest).
+sum-up-numbers-general([Head | Tail], Total):-
+    not(number(Head)),
+    sum-up-numbers-general(Tail, SumRest).

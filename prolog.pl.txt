@@ -1,3 +1,4 @@
+
 sum-up-numbers-simple([], 0).
 sum-up-numbers-simple([Head | Tail], Total) :- 
     number(Head),
@@ -8,14 +9,18 @@ sum-up-numbers-simple([Head | Tail], SumRest) :-
     not(number(Head)),
     sum-up-numbers-simple(Tail, SumRest).
 
-sum-up-numbers-general([], 0).
+sum-up-numbers-general([], 0). %base case
+sum-up-numbers-general([[]],0).
 sum-up-numbers-general([Head | Tail], Total):-
-    number(Head),
+    number(Head),           %checks if #
     sum-up-numbers-general(Tail, SumRest),
     Total is Head + SumRest.
-sum-up-numbers-general([Head | Tail], Total):-
-    is_list(Head),
-    sum-up-numbers-general(Head, SumRest).
-sum-up-numbers-general([Head | Tail], Total):-
-    not(number(Head)),
+sum-up-numbers-general([Head | Tail], SumRest):-
+    is_list(Head), %checks if list 
+    sum-up-numbers-general(Head, SumResult),
+    sum-up-numbers-general(Tail, Result),
+    SumRest is SumResult + Result.
+     
+sum-up-numbers-general([Head | Tail], SumRest):-
+    not(number(Head)), %checks if its not a number
     sum-up-numbers-general(Tail, SumRest).

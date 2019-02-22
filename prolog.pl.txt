@@ -25,3 +25,9 @@ sum-up-numbers-general([Head | Tail], SumRest):-
     not(number(Head)), %checks if its not a number
     sum-up-numbers-general(Tail, SumRest).
 %//////////
+
+common-unique-elements([], _, []). %fact for empty lists
+common-unique-elements([Head |Tail], L2, [Head2 | Tail2]) :-
+    member(Head,L2), %member func that checks for like memebers
+    common-unique-elements(Tail,L2, Tail2). %recursive call
+common-unique-elements([_| Tail], L2, Tail2) :-
